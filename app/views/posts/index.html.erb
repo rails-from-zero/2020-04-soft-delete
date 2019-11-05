@@ -1,0 +1,13 @@
+<p><%= link_to "New post", [:new, :post] %></p>
+
+<% @posts.each do |post| %>
+  <article>
+    <h3>
+      <%= link_to post.title, post %>
+    </h3>
+    <p>
+      Written by <strong><%= post.user.name %></strong>,
+      <%= distance_of_time_in_words_to_now(post.created_at) %> ago
+    </p>
+  </article>
+<% end %>

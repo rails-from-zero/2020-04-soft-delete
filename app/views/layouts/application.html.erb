@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SoftDeleteApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Montserrat', media: 'all' %>
+
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <div id="page">
+      <p class="current-user">Logged in as <a><%= current_user.name %></a></p>
+      <h1><%= link_to "Random Bike Board", :root %></h1>
+      <% if flash[:notice] %>
+        <p class="notice-message"><%= flash[:notice] %></p>
+      <% end %>
+
+      <% if flash[:error] %>
+        <p class="error-message"><%= flash[:error] %></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>

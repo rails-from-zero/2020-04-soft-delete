@@ -1,0 +1,31 @@
+<article>
+  <h3>
+    <%= @post.title %>
+
+    <% if @post.user == current_user %>
+      <small>[<%= link_to "Delete", @post, method: :delete, data: { confirm: "Are you sure?" } %>]</small>
+    <% end %>
+  </h3>
+
+  <p>Written by <strong><%= @post.user.name %></strong>, <%= distance_of_time_in_words_to_now(@post.created_at) %> ago</p>
+  <div class="description"><%= markdown @post.content %></div>
+</article>
+
+<section id="comments">
+  <% @post.comments.each do |comment| %>
+    <article>
+      <p><%= comment.user.name %> said:</p>
+      <p><%= comment.content %></p>
+      <% if comment.user == current_user %>
+        <p>[<%= link_to "Delete", comment, method: :delete, data: { confirm: "Are you sure?" } %>]</p>
+      <% end %>
+    </article>
+  <% end %>
+</section>
+
+<br />
+
+<%= form_for [@post, Comment.new] do |f| %>
+  <p><%= f.text_area :content, placeholder: "Comment" %></p>
+  <p><%= f.submit "Save" %></p>
+<% end %>

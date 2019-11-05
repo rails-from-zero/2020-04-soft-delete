@@ -1,0 +1,17 @@
+<h3>New support post</h3>
+<p><%= link_to "Go back", :root %></p>
+
+<% if @post.errors.any? %>
+  <ul class="errors">
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @post do |f| %>
+  <p><%= f.text_field :title, placeholder: "Title" %></p>
+  <p><%= f.text_area :content, placeholder: "Content" %></p>
+
+  <p><%= f.submit "Save" %></p>
+<% end %>
