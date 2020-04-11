@@ -1,11 +1,18 @@
 class Post < ApplicationRecord
-  has_many :comments
+  include Deletable
+
+  has_many :comments, dependent: :destroy
+  has_many :soft_deleted_comments,
+           -> { only_deleted },
+           class_name: "Comment",
+           dependent: :destroy
   belongs_to :user
 
   validates :title, :content, :user,
             presence: true
 
-  before_destroy :ensure_no_comments
+  before_soft_destroy :ensure_no_comments,
+                      prepend: true
 
   private
 

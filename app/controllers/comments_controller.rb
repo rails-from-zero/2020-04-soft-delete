@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = current_user.comments.find(params[:id])
-    comment.destroy
+    comment.soft_destroy
 
     redirect_to comment.post
   end

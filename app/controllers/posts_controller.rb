@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   def destroy
     post = current_user.posts.find(params[:id])
 
-    if post.destroy
+    if post.soft_destroy
       redirect_to :root, notice: "Post was deleted"
     else
       redirect_to post, flash: { error: "Post could not be deleted" }

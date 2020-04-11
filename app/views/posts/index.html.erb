@@ -8,6 +8,7 @@
     <p>
       Written by <strong><%= post.user.name %></strong>,
       <%= distance_of_time_in_words_to_now(post.created_at) %> ago
+      (<%= pluralize(post.comments_count, "comment") %>)
     </p>
   </article>
 <% end %>

@@ -46,9 +46,15 @@ Post.create!(
   created_at: 1.month.ago
 )
 
-Post.create!(
+post3 = Post.create!(
   title: "My awesome trip through Europe",
   content: "Lorem ipsum dolor sit",
   user: user5,
   created_at: 1.year.ago
+)
+
+Comment.create!(
+  content: "lorem ipsum",
+  post: post3,
+  user: user4
 )
